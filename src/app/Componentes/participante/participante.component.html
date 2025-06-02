@@ -1,0 +1,45 @@
+<section class="participante-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h1 class="display-5 fw-bold mb-3">Hola, {{ authService.usuarioLogueado?.nombre }}</h1>
+        <p class="lead mb-4">Prepárate para capturar momentos increíbles y competir en nuestro rally fotográfico.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="participante-card" routerLink="/subir-foto">
+        <div class="participante-icon">
+          <i class="fas fa-futbol"></i>
+        </div>
+        <div>
+          <h3>Subir Foto de Estadio</h3>
+          <p>Participa en el rally fotográfico</p>
+        </div>
+        <div class="participante-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="participante-card" routerLink="/mis-fotos">
+        <div class="participante-icon">
+          <i class="fas fa-images"></i>
+        </div>
+        <div>
+          <h3>Mis Fotos</h3>
+          <p>Revisa el estado de tus participaciones.</p>
+        </div>
+        <div class="participante-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

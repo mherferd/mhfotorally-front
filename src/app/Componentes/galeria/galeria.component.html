@@ -1,0 +1,89 @@
+<div class="container mt-4">
+  <h2>Galería de Fotos</h2>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div *ngIf="cargando" class="text-center my-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <div class="modal-image-container" *ngIf="selectedImage" (click)="closeModal()">
+    <div class="close-modal">&times;</div>
+    <div class="modal-image-content" (click)="$event.stopPropagation()">
+      <img [src]="selectedImage" alt="Imagen ampliada">
+    </div>
+  </div>
+
+
+
+  <div class="row g-4" *ngIf="!cargando">
+    <div class="col-md-4 col-lg-3" *ngFor="let foto of fotosPaginadas">
+      <div class="card gallery-card h-100">
+        <div class="image-container" (click)="openModal(foto.url)" [attr.data-title]="foto.titulo">
+          <img [src]="foto.url" [alt]="foto.titulo">
+          <div class="enlarge-icon">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ foto.titulo }}</h5>
+          <p class="card-text">{{ foto.descripcion }}</p>
+          <p class="text-muted small">
+            <i class="fas fa-user"></i> {{ foto.usuario_nombre }} {{ foto.usuario_apellidos }}
+            <br>
+            <i class="fas fa-calendar"></i> {{ foto.fecha_subida | date }}
+          </p>
+        </div>
+        <div class="card-footer vote-buttons">
+          <button class="btn btn-sm flex-grow-1 me-2" [class.btn-success]="!esMiVoto(foto, 1)"
+            [class.btn-outline-success]="esMiVoto(foto, 1)" (click)="!foto.cargandoVoto && votarFoto(foto.id, 1)"
+            [disabled]="foto.cargandoVoto || esMiVoto(foto, 1)">
+            <i class="fas fa-thumbs-up"></i>
+            <span *ngIf="esMiVoto(foto, 1)">✓</span>
+            {{ foto.likes || 0 }}
+            <span *ngIf="foto.cargandoVoto" class="ms-1">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
+          </button>
+
+          <button class="btn btn-sm flex-grow-1" [class.btn-danger]="!esMiVoto(foto, -1)"
+            [class.btn-outline-danger]="esMiVoto(foto, -1)" (click)="!foto.cargandoVoto && votarFoto(foto.id, -1)"
+            [disabled]="foto.cargandoVoto || esMiVoto(foto, -1)">
+            <i class="fas fa-thumbs-down"></i>
+            <span *ngIf="esMiVoto(foto, -1)">✓</span>
+            {{ foto.dislikes || 0 }}
+            <span *ngIf="foto.cargandoVoto" class="ms-1">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<nav *ngIf="totalPages > 1">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="changePage(1)">&laquo;&laquo;</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="changePage(currentPage - 1)">&laquo;</a>
+    </li>
+
+    <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+      [class.active]="currentPage === i + 1">
+      <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="changePage(currentPage + 1)">&raquo;</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="changePage(totalPages)">&raquo;&raquo;</a>
+    </li>
+  </ul>
+</nav>

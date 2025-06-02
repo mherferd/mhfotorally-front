@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2>Editar Usuario</h2>
+  
+  <form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Apellidos</label>
+        <input type="text" class="form-control" formControlName="apellidos">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" formControlName="email">
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Teléfono</label>
+        <input type="tel" class="form-control" formControlName="telefono">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Fecha Nacimiento</label>
+        <input type="date" class="form-control" formControlName="fecha_nacimiento">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Rol</label>
+      <select class="form-select" formControlName="rol">
+        <option value="participante">Participante</option>
+        <option value="admin">Administrador</option>
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" 
+        (click)="cancelar()">
+        Cancelar
+        </button>
+      <button type="submit" class="btn btn-primary" [disabled]="usuarioForm.invalid || cargando">
+        <span *ngIf="!cargando">Guardar Cambios</span>
+        <span *ngIf="cargando" class="spinner-border spinner-border-sm"></span>
+      </button>
+    </div>
+  </form>
+</div>

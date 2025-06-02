@@ -1,0 +1,80 @@
+<section class="profile-hero bg-light py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="display-5 fw-bold">Mi Perfil</h1>
+        <p class="lead">Gestiona tu información personal y configuración</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container my-5">
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="profile-card h-100">
+        <h3 class="profile-card-title">
+          <i class="fas fa-user-circle me-2"></i>Información Personal
+        </h3>
+        <div class="profile-info">
+          <div class="mb-3">
+            <label class="form-label"><strong>Nombre:</strong></label>
+            <p class="mb-0">{{usuario?.nombre}} {{usuario?.apellidos}}</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Email:</strong></label>
+            <p class="mb-0">{{usuario?.email}}</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Teléfono:</strong></label>
+            <p class="mb-0">{{usuario?.telefono || 'No especificado'}}</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Fecha de Nacimiento:</strong></label>
+            <p class="mb-0">{{usuario?.fecha_nacimiento || 'No especificada'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="profile-card h-100">
+        <h3 class="profile-card-title">
+          <i class="fas fa-chart-bar me-2"></i>Mis Estadísticas
+        </h3>
+        <div class="row stats-grid g-3">
+          <div class="col-md-6">
+            <div class="stat-item bg-light p-3 rounded text-center">
+              <div class="stat-value text-primary">{{stats.fotosEnviadas}}</div>
+              <div class="stat-label">Fotos Enviadas</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="stat-item bg-light p-3 rounded text-center">
+              <div class="stat-value text-success">{{stats.fotosAprobadas}}</div>
+              <div class="stat-label">Fotos Aprobadas</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="stat-item bg-light p-3 rounded text-center">
+              <div class="stat-value text-warning">{{stats.fotosPendientes}}</div>
+              <div class="stat-label">Fotos Pendientes</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="stat-item bg-light p-3 rounded text-center">
+              <div class="stat-value text-danger">{{stats.fotosRechazadas}}</div>
+              <div class="stat-label">Fotos Rechazadas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <button (click)="auth.logout()" class="btn btn-outline-danger">
+      <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
+    </button>
+  </div>
+</section>

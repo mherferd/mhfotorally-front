@@ -1,0 +1,78 @@
+<div class="login-container">
+  <div class="login-box registro-box">
+    <div class="login-header">
+      <img src="assets/imagenes/logo_verde.png" alt="Logo MHFotoRally" class="logo">
+      <h2>Regístrate en MHFotoRally</h2>
+    </div>
+
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre" formControlName="nombre" 
+                 [ngClass]="{ 'is-invalid': submitted && formControls['nombre'].errors }">
+          <div *ngIf="submitted && formControls['nombre'].errors" class="invalid-feedback">
+            {{ getNombreErrorMessage() }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos" formControlName="apellidos"
+                 [ngClass]="{ 'is-invalid': submitted && formControls['apellidos'].errors }">
+          <div *ngIf="submitted && formControls['apellidos'].errors" class="invalid-feedback">
+            {{ getApellidosErrorMessage() }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email"
+                 [ngClass]="{ 'is-invalid': submitted && formControls['email'].errors }">
+          <div *ngIf="submitted && formControls['email'].errors" class="invalid-feedback">
+            {{ getEmailErrorMessage() }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" class="form-control" id="telefono" formControlName="telefono"
+                 [ngClass]="{ 'is-invalid': submitted && formControls['telefono'].errors }">
+          <div *ngIf="submitted && formControls['telefono'].errors" class="invalid-feedback">
+            {{ getTelefonoErrorMessage() }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" id="fecha_nacimiento" formControlName="fecha_nacimiento"
+               [ngClass]="{ 'is-invalid': submitted && formControls['fecha_nacimiento'].errors }">
+        <div *ngIf="submitted && formControls['fecha_nacimiento'].errors" class="invalid-feedback">
+          {{ getFechaNacimientoErrorMessage() }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" class="form-control" id="password" formControlName="password"
+               [ngClass]="{ 'is-invalid': submitted && formControls['password'].errors }">
+        <div *ngIf="submitted && formControls['password'].errors" class="invalid-feedback">
+          {{ getPasswordErrorMessage() }}
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="registroForm.invalid && submitted">
+        Registrarse
+      </button>
+
+      <div class="login-footer">
+        <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a></p>
+      </div>
+    </form>
+  </div>
+</div>

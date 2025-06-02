@@ -1,0 +1,23 @@
+.avatar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn-sm {
+  min-width: 100px;
+}
+
+.text-muted {
+  font-size: 0.85rem;
+}

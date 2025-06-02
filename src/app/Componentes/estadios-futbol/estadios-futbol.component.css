@@ -1,0 +1,32 @@
+:host {
+  --color-primario: #209513;
+  --color-secundario: #175f0f;
+}
+
+.card.border-success {
+  border-color: var(--color-primario) !important;
+}
+
+.btn-success {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.btn-success:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+}
+
+.btn-outline-success {
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--color-primario);
+  color: white;
+}
+
+.bg-success {
+  background-color: var(--color-primario) !important;
+}

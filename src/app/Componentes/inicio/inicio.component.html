@@ -1,0 +1,135 @@
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Captura momentos inolvidables</h1>
+                <p class="lead mb-4">Participa en nuestro rally fotográfico y muestra tu talento compitiendo con los
+                    mejores fotógrafos. Gana premios increíbles y haz que tu trabajo sea reconocido.</p>
+                <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                    <a *ngIf="!auth.estaLogueado()" routerLink="/registro" class="btn btn-primary btn-lg">Únete
+                        Ahora</a>
+                    <a *ngIf="auth.estaLogueado()" routerLink="/subir-foto" class="btn btn-primary btn-lg">Participa
+                        Ahora</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="/assets/imagenes/Betis.jpg" alt="Fotógrafo profesional" class="img-fluid rounded-4 shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container mb-5" id="como-funciona">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold mb-3">¿Cómo funciona?</h2>
+        <p class="text-muted mx-auto">Participar en nuestro rally fotográfico es muy sencillo. Solo sigue estos pasos y
+            comienza a mostrar tu talento.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Regístrate</h3>
+                <p>Crea tu cuenta gratuita en minutos y únete a nuestra comunidad de fotógrafos apasionados.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Captura</h3>
+                <p>Participa en nuestros desafíos fotográficos semanales con temas emocionantes.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Gana premios</h3>
+                <p>Sube tus mejores fotos, compite y gana increíbles premios cada mes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Opiniones de algunos participantes</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"El rally fotográfico ha mejorado mi técnica increíblemente. Los desafíos
+                            semanales me mantienen motivado."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <img src="../../../assets/imagenes/Cliente2.jpg" class="rounded-circle me-3" width="50"
+                                alt="Usuario">
+                            <div>
+                                <h6 class="mb-0">Johnny Cardoso</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="card-text">"Gané mi primer concurso fotográfico gracias a los retos de esta
+                            plataforma. ¡Totalmente recomendado!"</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <img src="../../../assets/imagenes/Cliente3.jpg" class="rounded-circle me-3" width="50"
+                                alt="Usuario">
+                            <div>
+                                <h6 class="mb-0">Eladio Carrión</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="card-text">"La comunidad es increíble, siempre dispuesta a ayudar. He aprendido mucho
+                            de otros fotógrafos."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <img src="../../../assets/imagenes/Cliente1.jpg" class="rounded-circle me-3" width="50"
+                                alt="Usuario">
+                            <div>
+                                <h6 class="mb-0">Youssouf Sabaly</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

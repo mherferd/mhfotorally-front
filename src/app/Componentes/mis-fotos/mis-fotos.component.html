@@ -1,0 +1,100 @@
+<div class="container mt-4">
+  <h2>Mis Fotos Subidas</h2>
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card bg-warning bg-opacity-10">
+        <div class="card-body text-center">
+          <h3>{{ estados.pendiente }}</h3>
+          <p class="mb-0">Pendientes</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-success bg-opacity-10">
+        <div class="card-body text-center">
+          <h3>{{ estados.admitida }}</h3>
+          <p class="mb-0">Aprobadas</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-danger bg-opacity-10">
+        <div class="card-body text-center">
+          <h3>{{ estados.rechazada }}</h3>
+          <p class="mb-0">Rechazadas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table text-center align-middle">
+      <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Título</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let foto of fotosPaginadas">
+          <td>
+            <img [src]="foto.url" class="img-thumbnail" style="max-height: 100px;">
+          </td>
+          <td>{{ foto.titulo }}</td>
+          <td>
+            <span [ngClass]="{
+                'estado-badge estado-pendiente': foto.estado === 'pendiente',
+                'estado-badge estado-admitida': foto.estado === 'admitida',
+                'estado-badge estado-rechazada': foto.estado === 'rechazada'
+              }">
+              {{ foto.estado }}
+            </span>
+
+            <div *ngIf="foto.estado === 'rechazada' && foto.motivo_rechazo" class="small text-muted mt-1">
+              <i class="fas fa-info-circle me-1"></i> Motivo: {{ foto.motivo_rechazo }}
+            </div>
+          </td>
+          <td>{{ foto.fecha_subida | date:'shortDate' }}</td>
+          <td>
+            <button *ngIf="foto.estado === 'pendiente'" (click)="editarFoto(foto.id)"
+              class="btn btn-sm btn-warning me-2">
+              <i class="fas fa-edit"></i> Editar
+            </button>
+            <button *ngIf="foto.estado === 'pendiente'" (click)="eliminarFoto(foto.id)" class="btn btn-sm btn-danger">
+              <i class="fas fa-trash"></i> Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- Paginación -->
+<nav *ngIf="totalPages > 1">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="changePage(1)">&laquo;&laquo;</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="changePage(currentPage - 1)">&laquo;</a>
+    </li>
+
+    <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+      [class.active]="currentPage === i + 1">
+      <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="changePage(currentPage + 1)">&raquo;</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="changePage(totalPages)">&raquo;&raquo;</a>
+    </li>
+  </ul>
+</nav>

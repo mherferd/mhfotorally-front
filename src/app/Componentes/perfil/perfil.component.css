@@ -55,7 +55,6 @@
   font-size: 0.9rem;
 }
 
-/* Asegurar igual altura de las cards */
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -84,7 +83,7 @@
   align-items: center;
   justify-content: center;
 }
-/* Estilos para la sección de votos */
+
 .progress {
   height: 8px;
   background-color: #f0f0f0;
@@ -95,7 +94,6 @@
   transition: width 0.6s ease;
 }
 
-/* Colores para los ratios */
 .ratio-high {
   color: var(--color-primario);
 }
@@ -108,7 +106,6 @@
   color: #dc3545;
 }
 
-/* Mejora para los stat-items */
 .stat-item {
   transition: all 0.3s ease;
   border: 1px solid #eee;

@@ -9,48 +9,56 @@
     <div class="row">
       <div class="col-md-6 mb-3">
         <label class="form-label">Nombre *</label>
-        <input type="text" class="form-control" formControlName="nombre">
-        <div *ngIf="usuarioForm.get('nombre')?.invalid && usuarioForm.get('nombre')?.touched" 
-             class="text-danger">
-          Nombre es requerido
+        <input type="text" class="form-control" formControlName="nombre"
+               [class.is-invalid]="usuarioForm.get('nombre')?.invalid && usuarioForm.get('nombre')?.touched">
+        <div class="invalid-feedback">
+          {{ getFieldError('nombre') }}
         </div>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label">Apellidos *</label>
-        <input type="text" class="form-control" formControlName="apellidos">
-        <div *ngIf="usuarioForm.get('apellidos')?.invalid && usuarioForm.get('apellidos')?.touched" 
-             class="text-danger">
-          Apellidos son requeridos
+        <input type="text" class="form-control" formControlName="apellidos"
+               [class.is-invalid]="usuarioForm.get('apellidos')?.invalid && usuarioForm.get('apellidos')?.touched">
+        <div class="invalid-feedback">
+          {{ getFieldError('apellidos') }}
         </div>
       </div>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Email *</label>
-      <input type="email" class="form-control" formControlName="email">
-      <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched" 
-           class="text-danger">
-        Ingresa un email válido
+      <input type="email" class="form-control" formControlName="email"
+             [class.is-invalid]="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">
+      <div class="invalid-feedback">
+        {{ getFieldError('email') }}
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-6 mb-3">
         <label class="form-label">Teléfono</label>
-        <input type="tel" class="form-control" formControlName="telefono">
+        <input type="tel" class="form-control" formControlName="telefono"
+               [class.is-invalid]="usuarioForm.get('telefono')?.invalid && usuarioForm.get('telefono')?.touched">
+        <div class="invalid-feedback">
+          {{ getFieldError('telefono') }}
+        </div>
       </div>
       <div class="col-md-6 mb-3">
-        <label class="form-label">Fecha Nacimiento</label>
-        <input type="date" class="form-control" formControlName="fecha_nacimiento">
+        <label class="form-label">Fecha Nacimiento *</label>
+        <input type="date" class="form-control" formControlName="fecha_nacimiento"
+               [class.is-invalid]="usuarioForm.get('fecha_nacimiento')?.invalid && usuarioForm.get('fecha_nacimiento')?.touched">
+        <div class="invalid-feedback">
+          {{ getFieldError('fecha_nacimiento') }}
+        </div>
       </div>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Contraseña *</label>
-      <input type="password" class="form-control" formControlName="password">
-      <div *ngIf="usuarioForm.get('password')?.invalid && usuarioForm.get('password')?.touched" 
-           class="text-danger">
-        Mínimo 8 caracteres
+      <input type="password" class="form-control" formControlName="password"
+             [class.is-invalid]="usuarioForm.get('password')?.invalid && usuarioForm.get('password')?.touched">
+      <div class="invalid-feedback">
+        {{ getFieldError('password') }}
       </div>
     </div>
 

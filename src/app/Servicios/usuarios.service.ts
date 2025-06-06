@@ -90,32 +90,32 @@ export class UsuariosService {
   }
 
   ObtenerUsuarioPorId(id: number) {
-    console.log('[UsuariosService] Obteniendo usuario con ID:', id);
+    console.log('Obteniendo usuario con ID:', id);
     const pa = JSON.stringify({
       accion: "ObtenerUsuario",
       credenciales: { id }
     });
 
     return this.http.post<Usuario>(this.url, pa).pipe(
-      tap(usuario => console.log('[UsuariosService] Usuario recibido:', usuario)),
+      tap(usuario => console.log('Usuario recibido:', usuario)),
       catchError(error => {
-        console.error('[UsuariosService] Error al obtener usuario:', error);
+        console.error('Error al obtener usuario:', error);
         return throwError(() => error);
       })
     );
   }
 
   ActualizarUsuario(usuario: Usuario) {
-    console.log('[UsuariosService] Actualizando usuario:', usuario);
+    console.log('Actualizando usuario:', usuario);
     const pa = JSON.stringify({
       accion: "ActualizarUsuario",
       usuario
     });
 
     return this.http.post<any>(this.url, pa).pipe(
-      tap(response => console.log('[UsuariosService] Respuesta actualización:', response)),
+      tap(response => console.log('Respuesta actualización:', response)),
       catchError(error => {
-        console.error('[UsuariosService] Error al actualizar usuario:', error);
+        console.error('Error al actualizar usuario:', error);
         return throwError(() => error);
       })
     );

@@ -1,4 +1,3 @@
-// servicios/fotos.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,20 +16,37 @@ export class FotosService {
   private url = 'http://15.236.209.101/servicios.php';
   private baseUrl = 'http://15.236.209.101/imagenes/';
 
-
   constructor(private http: HttpClient, private usuariosService: UsuariosService) { }
 
   subirFoto(archivo: File, fotoData: any): Observable<any> {
-
-
     const formData = new FormData();
     formData.append('archivo', archivo);
     formData.append('titulo', fotoData.titulo);
     formData.append('descripcion', fotoData.descripcion || '');
     formData.append('usuario_id', fotoData.usuario_id.toString());
-    formData.append('peticion', 'crearFoto');
+    formData.append('accion', 'crearFoto');
 
-    return this.http.post(this.url, formData);
+    return this.http.post(this.url, formData).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error en subirFoto:', error);
+        let errorMessage = 'Error al subir la foto';
+        
+        if (error.error) {
+          if (typeof error.error === 'string') {
+            try {
+              const errorObj = JSON.parse(error.error);
+              errorMessage = errorObj.error || errorMessage;
+            } catch (e) {
+              errorMessage = error.error;
+            }
+          } else if (error.error.error) {
+            errorMessage = error.error.error;
+          }
+        }
+        
+        return throwError(() => ({ error: { error: errorMessage } }));
+      })
+    );
   }
 
 

@@ -65,7 +65,7 @@ export class EditarFotoComponent implements OnInit {
           if (foto.url.startsWith('http')) {
             this.imagenPrevia = foto.url;
           } else {
-            this.imagenPrevia = `http://localhost/TFG/api/imagenes/${foto.url}`;
+            this.imagenPrevia = `http://15.236.209.101/imagenes/${foto.url}`;
           }
         }
         
@@ -111,7 +111,7 @@ export class EditarFotoComponent implements OnInit {
 
   onSubmit() {
     if (this.fotoForm.invalid) {
-      this.mensajeError = 'Por favor, completa todos los campos requeridos correctamente';
+      this.mensajeError = 'Por favor, completa todos los campos ';
       return;
     }
 

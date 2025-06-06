@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FotosService } from '../../Servicios/fotos.service';
 import { UsuariosService } from '../../Servicios/usuarios.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router'; // Importa ambos
+import { RouterModule, Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-mis-fotos',
   templateUrl: './mis-fotos.component.html',
   standalone: true,
-  imports: [CommonModule, RouterModule], // RouterModule para directivas en template
+  imports: [CommonModule, RouterModule], 
   styleUrls: ['./mis-fotos.component.css']
 })
 export class MisFotosComponent implements OnInit {
@@ -20,7 +20,7 @@ export class MisFotosComponent implements OnInit {
     rechazada: 0
   };
   currentPage = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 5;
 
   get fotosPaginadas() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;

@@ -58,6 +58,13 @@
               <i class="fas fa-spinner fa-spin"></i>
             </span>
           </button>
+          <button *ngIf="usuariosService.esAdmin()" class="btn btn-sm btn-danger mt-2 w-100"
+            (click)="eliminarFoto(foto.id)" [disabled]="foto.cargandoVoto">
+            <i class="fas fa-trash"></i> Eliminar
+            <span *ngIf="foto.cargandoVoto" class="ms-1">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
+          </button>
         </div>
       </div>
     </div>

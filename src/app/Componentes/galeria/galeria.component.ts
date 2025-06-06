@@ -1,4 +1,3 @@
-// componentes/galeria/galeria.component.ts
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../Servicios/usuarios.service';
 import { FotosService } from '../../Servicios/fotos.service';
@@ -144,4 +143,30 @@ export class GaleriaComponent implements OnInit {
     this.selectedImage = null;
     document.body.style.overflow = 'auto';
   }
+
+  eliminarFoto(fotoId: number): void {
+  if (!confirm('¿Estás seguro de eliminar esta foto permanentemente?')) {
+    return;
+  }
+
+  const fotoIndex = this.fotos.findIndex(f => f.id === fotoId);
+  if (fotoIndex === -1) return;
+  
+  this.fotos[fotoIndex].cargandoVoto = true;
+
+  this.fotosService.eliminarFoto(fotoId).subscribe({
+    next: () => {
+      this.fotos = this.fotos.filter(f => f.id !== fotoId);
+      
+      if (this.fotosPaginadas.length === 0 && this.currentPage > 1) {
+        this.changePage(this.currentPage - 1);
+      }
+    },
+    error: (err) => {
+      console.error('Error al eliminar foto:', err);
+      this.fotos[fotoIndex].cargandoVoto = false;
+      this.error = 'Error al eliminar la foto';
+    }
+  });
+}
 }

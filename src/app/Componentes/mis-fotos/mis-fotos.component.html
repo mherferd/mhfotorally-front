@@ -14,7 +14,7 @@
       <div class="card bg-success bg-opacity-10">
         <div class="card-body text-center">
           <h3>{{ estados.admitida }}</h3>
-          <p class="mb-0">Aprobadas</p>
+          <p class="mb-0">Admitidas</p>
         </div>
       </div>
     </div>
@@ -75,7 +75,6 @@
   </div>
 </div>
 
-<!-- Paginación -->
 <nav *ngIf="totalPages > 1">
   <ul class="pagination justify-content-center">
     <li class="page-item" [class.disabled]="currentPage === 1">

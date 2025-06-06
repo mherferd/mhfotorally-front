@@ -8,6 +8,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './estadios-futbol.component.css'
 })
 export class EstadiosFutbolComponent {
-  constructor(public authService: UsuariosService) {}
+  constructor( public auth: UsuariosService) {}
 
 }

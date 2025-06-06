@@ -30,12 +30,7 @@
                 </div>
               </div>
               <div class="flex-grow-1 ms-3">
-                <h6 class="mb-0">{{ foto.usuario_nombre }} {{ foto.usuario_apellidos }}</h6>
-                <small class="text-muted">
-                  <i class="fas fa-envelope"></i> {{ foto.usuario_email }}
-                  <span *ngIf="foto.usuario.telefono"><br><i class="fas fa-phone"></i> {{ foto.usuario_telefono
-                    }}</span>
-                </small>
+                <h6 class="mb-0">{{ foto.usuario_nombre }} {{ foto.usuario_apellidos }}</h6>               
               </div>
             </div>
             <div *ngIf="!foto.usuario" class="text-danger small">

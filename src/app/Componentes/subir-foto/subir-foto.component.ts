@@ -28,11 +28,11 @@ export class SubirFotoComponent {
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      const tiposPermitidos = ['image/jpeg', 'image/png'];
+      const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
       const tamanoMaximo = 5 * 1024 * 1024; 
 
       if (!tiposPermitidos.includes(file.type)) {
-        this.mensaje = 'Solo se permiten imágenes JPEG o PNG';
+        this.mensaje = 'Solo se permiten imágenes JPEG, PNG o GIF';
         return;
       }
 
@@ -51,7 +51,7 @@ export class SubirFotoComponent {
   }
 
   onSubmit(): void {
-    if (!this.archivo || !this.fotoData.titulo) {
+    if (!this.archivo || !this.fotoData.titulo.trim()) {
       this.mensaje = 'Por favor, completa todos los campos requeridos';
       return;
     }
@@ -67,22 +67,37 @@ export class SubirFotoComponent {
 
     const datosFoto = {
       ...this.fotoData,
+      titulo: this.fotoData.titulo.trim(),
+      descripcion: this.fotoData.descripcion.trim(),
       usuario_id: usuarioId
     };
+
+    console.log('Enviando foto:', {
+      archivo: this.archivo.name,
+      datos: datosFoto
+    });
 
     this.fotosService.subirFoto(this.archivo, datosFoto).subscribe({
       next: (respuesta) => {
         console.log('Respuesta del servidor:', respuesta);
-        this.mensaje = 'Foto subida correctamente. Espera la validación del administrador.';
-        this.resetForm();
+        if (respuesta.success) {
+          this.mensaje = 'Foto subida correctamente. Espera la validación del administrador.';
+          this.resetForm();
+        } else {
+          this.mensaje = respuesta.error || 'Error al subir la foto';
+        }
       },
       error: (error) => {
         console.error('Error completo:', error);
-        if (error.error) {
-          this.mensaje = error.error.error || 'Error al subir la foto. Inténtalo de nuevo.';
-        } else {
-          this.mensaje = 'Error de conexión con el servidor';
+        let mensajeError = 'Error de conexión con el servidor';
+        
+        if (error.error && error.error.error) {
+          mensajeError = error.error.error;
+        } else if (error.message) {
+          mensajeError = error.message;
         }
+        
+        this.mensaje = mensajeError;
         this.cargando = false;
       },
       complete: () => {
@@ -95,6 +110,7 @@ export class SubirFotoComponent {
     this.archivo = null;
     this.imagenPrevia = null;
     this.fotoData = { titulo: '', descripcion: '' };
+    this.mensaje = '';
     const inputFile = document.getElementById('fileInput') as HTMLInputElement;
     if (inputFile) inputFile.value = '';
   }
